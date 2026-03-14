@@ -22,6 +22,17 @@ cp .env.example .env
 npm run dev
 ```
 
+## Deploy to Cloudflare
+
+This project is configured for Cloudflare Pages via [`wrangler.jsonc`](/Users/cviens/Documents/Programmation/Personnal/bestafter/wrangler.jsonc).
+
+1. Update the project name in [`wrangler.jsonc`](/Users/cviens/Documents/Programmation/Personnal/bestafter/wrangler.jsonc) if needed.
+2. Build and deploy:
+
+```bash
+npm run deploy
+```
+
 ## Donation integration
 
 The donation page expects two inputs:
