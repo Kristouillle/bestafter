@@ -36,14 +36,7 @@
 html {
   font-family: "Moms Typewriter", "American Typewriter", monospace;
   color: var(--ink);
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 28%),
-    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06), transparent 22%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-  background-size: 18px 18px, 18px 18px, auto, auto, auto;
+  background: var(--bg-deep);
 }
 
 body {
@@ -144,7 +137,7 @@ img {
 }
 
 main {
-  padding: 0 0 4rem;
+  padding: 0;
 }
 
 .hero,
@@ -683,12 +676,27 @@ main {
 }
 
 .site-footer {
-  padding: 0 0 2rem;
+  position: relative;
+  padding: 2rem 0;
+  background: #1e1e1e;
+  height: 200px;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/plywood_bw.jpg") center / cover no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.34;
+  pointer-events: none;
 }
 
 .site-footer-inner {
+  position: relative;
+  z-index: 1;
   padding: 1rem 0 0;
-  border-top: 2px solid rgba(255, 255, 255, 0.24);
+  border-top: 2px solid rgba(255, 255, 255, 0.16);
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.07em;
