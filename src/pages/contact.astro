@@ -1,0 +1,41 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+export const prerender = true;
+---
+
+<MainLayout
+  title="Contact | BestAfter"
+  description="Contact BestAfter for collaboration, support, or partnership."
+  path="/contact"
+>
+  <PageHeader
+    eyebrow="Contact"
+    title="Reach out for collaboration, feedback, or support."
+    intro="If your nonprofit or community project needs a practical software partner, this is the right place to start the conversation."
+  />
+
+  <section class="split">
+    <article class="content-card">
+      <h2>Email</h2>
+      <p>
+        Replace this placeholder with your preferred public contact address, such as
+        <a href="mailto:hello@example.org">hello@example.org</a>.
+      </p>
+      <p>
+        Typical topics include partnership requests, implementation questions, sponsorship, and
+        bug reports.
+      </p>
+    </article>
+
+    <article class="content-card">
+      <h2>What to include</h2>
+      <ul>
+        <li>Who you are and what organization you represent</li>
+        <li>Which project or problem you are writing about</li>
+        <li>Your timeline, constraints, and any relevant budget context</li>
+      </ul>
+    </article>
+  </section>
+</MainLayout>

@@ -1,0 +1,200 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+export const prerender = true;
+---
+
+<MainLayout
+  title="BestAfter: yesterday"
+  description="Personal site for nonprofit open source software projects, support, and donations."
+  path="/"
+  fullBleed={true}
+>
+  <section class="hero">
+    <div class="hero-smudge" aria-hidden="true"></div>
+    <div class="hero-fade" aria-hidden="true"></div>
+    <div class="site-shell hero-inner">
+      <div class="hero-copy">
+        <h1>For the love of the game</h1>
+        <p class="lead">
+          i do shit i wanna do and publish it for free. that's it.
+          i really miss when the web wasn't just a big ugly shopping mall.
+          hope what i make is useful to you.
+        </p>
+      </div>
+
+      <div class="hero-mark" aria-hidden="true">
+        <span>OPEN</span>
+        <span>SOURCE</span>
+        <span>NONPROFIT</span>
+        <span>SOFTWARE</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="scan-story" data-scan-story data-stage="black">
+    <div class="site-shell">
+      <div class="scan-story-grid">
+        <div class="scan-copy">
+          <article class="scan-step" data-scan-step="black">
+            <span class="scan-index">01</span>
+            <h2>identify a problem.</h2>
+            <p>
+              or just something fun. i build what i want to use.
+            </p>
+          </article>
+
+          <article class="scan-step" data-scan-step="white">
+            <span class="scan-index">02</span>
+            <h2>Released in public, kept usable.</h2>
+            <p>
+              The point is not to launch and disappear. It is to make things that people can
+              actually download, understand, run, and keep around without needing a sales team or a
+              migration consultant.
+            </p>
+          </article>
+
+          <article class="scan-step" data-scan-step="red">
+            <span class="scan-index">03</span>
+            <h2>Maintained because somebody should.</h2>
+            <p>
+              Open source only matters if someone keeps showing up for it. Donations, time, and
+              stubbornness are what keep weird useful software alive after the announcement post is
+              gone.
+            </p>
+          </article>
+        </div>
+
+        <div class="scan-visual">
+          <div class="scan-frame">
+            <video
+              class="scan-video scan-video-black"
+              src="/videos/blackscan.webm"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            ></video>
+            <video
+              class="scan-video scan-video-white"
+              src="/videos/whitescan.webm"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            ></video>
+            <video
+              class="scan-video scan-video-red"
+              src="/videos/redscan.webm"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            ></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-shell">
+
+    <section class="section showcase">
+      <article class="content-card">
+        <h2>What this is</h2>
+        <p>
+          A showcase of the software I make and maintain in public. No funnel, no conversion copy,
+          no fake urgency. Just the work, the reasoning behind it, and a place to support it if you
+          want it to keep going.
+        </p>
+      </article>
+
+      <article class="content-card quote-card">
+        <p>
+          Open source is not a growth hack here. It is the point.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h2>Where to start</h2>
+        <div class="button-row">
+          <a class="button-secondary" href="/about">About the work</a>
+          <a class="button-secondary" href="/contact">Get in touch</a>
+          <a class="button" href="/donations">Support it</a>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script is:inline>
+    const scanStory = document.querySelector("[data-scan-story]");
+    const scanSteps = Array.from(document.querySelectorAll("[data-scan-step]"));
+    const scanVideos = Array.from(document.querySelectorAll(".scan-video"));
+
+    if (scanStory && scanSteps.length) {
+      const setStage = (stage) => {
+        scanStory.dataset.stage = stage;
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (visible) {
+            setStage(visible.target.getAttribute("data-scan-step") || "black");
+          }
+        },
+        {
+          rootMargin: "-30% 0px -30% 0px",
+          threshold: [0.2, 0.45, 0.7]
+        }
+      );
+
+      scanSteps.forEach((step) => observer.observe(step));
+    }
+
+    if (scanVideos.length) {
+      const tryPlay = (video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {});
+        }
+      };
+
+      const syncToFirst = () => {
+        const [master, ...rest] = scanVideos;
+        if (!master) {
+          return;
+        }
+
+        rest.forEach((video) => {
+          if (Math.abs(video.currentTime - master.currentTime) > 0.08) {
+            video.currentTime = master.currentTime;
+          }
+        });
+      };
+
+      scanVideos.forEach((video) => {
+        video.addEventListener("loadeddata", () => tryPlay(video), { once: true });
+      });
+
+      const [master] = scanVideos;
+      if (master) {
+        master.addEventListener("timeupdate", syncToFirst);
+      }
+
+      scanVideos.forEach(tryPlay);
+    }
+  </script>
+</MainLayout>

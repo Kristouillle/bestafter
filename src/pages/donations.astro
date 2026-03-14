@@ -1,0 +1,108 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+export const prerender = true;
+
+const embedUrl = import.meta.env.DONATION_EMBED_URL ?? "https://donate.stripe.com/";
+const fallbackGoalAmount = Number.parseInt(import.meta.env.DONATION_GOAL_AMOUNT ?? "10000", 10);
+const fallbackCurrency = import.meta.env.DONATION_CURRENCY ?? "USD";
+const initialFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: fallbackCurrency,
+  maximumFractionDigits: 0
+});
+---
+
+<MainLayout
+  title="Donations | BestAfter"
+  description="Support ongoing open source nonprofit software work."
+  path="/donations"
+>
+  <PageHeader
+    eyebrow="Donations"
+    title="Help fund maintenance, hosting, and the next useful release."
+    intro="The donation flow is handled by an external provider. This page keeps the experience simple while showing campaign progress from a small server-side API route."
+  />
+
+  <section class="split">
+    <article class="donation-card stack">
+      <div class="progress-shell" data-donation-progress data-currency={fallbackCurrency}>
+        <div class="progress-meta">
+          <div>
+            <div class="status">Raised so far</div>
+            <strong data-current-amount>{initialFormatter.format(0)}</strong>
+          </div>
+          <div>
+            <div class="status">Goal</div>
+            <strong data-goal-amount>{initialFormatter.format(fallbackGoalAmount)}</strong>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" data-progress-fill></div>
+        </div>
+
+        <div class="status" data-progress-status>Loading campaign progress…</div>
+      </div>
+
+      <div class="button-row">
+        <a class="button" href={embedUrl} target="_blank" rel="noreferrer">Open donation page</a>
+      </div>
+
+      <p>
+        Replace the embed URL and API settings with your actual donation provider values. The page
+        will keep working even if the API is unavailable.
+      </p>
+    </article>
+
+    <article class="donation-card">
+      <iframe
+        class="embed-frame"
+        title="Donation checkout"
+        src={embedUrl}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </article>
+  </section>
+
+  <script is:inline define:vars={{ fallbackGoalAmount }}>
+    const root = document.querySelector("[data-donation-progress]");
+    if (root) {
+      const currentAmount = root.querySelector("[data-current-amount]");
+      const goalAmount = root.querySelector("[data-goal-amount]");
+      const progressFill = root.querySelector("[data-progress-fill]");
+      const status = root.querySelector("[data-progress-status]");
+      const initialCurrency = root.getAttribute("data-currency") || "USD";
+
+      const currencyFormatter = (currency) =>
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency,
+          maximumFractionDigits: 0
+        });
+
+      fetch("/api/donations/progress")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to load progress");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const formatter = currencyFormatter(data.currency || initialCurrency);
+          currentAmount.textContent = formatter.format(data.currentAmount || 0);
+          goalAmount.textContent = formatter.format(data.goalAmount || 0);
+          progressFill.style.width = `${Math.max(0, Math.min(100, data.progressPercent || 0))}%`;
+          status.textContent = `Updated ${new Date(data.updatedAt).toLocaleString()}`;
+        })
+        .catch(() => {
+          const formatter = currencyFormatter(initialCurrency);
+          currentAmount.textContent = formatter.format(0);
+          goalAmount.textContent = formatter.format(fallbackGoalAmount);
+          status.textContent = "Progress is temporarily unavailable. Donations still work through the external provider.";
+        });
+    }
+  </script>
+</MainLayout>

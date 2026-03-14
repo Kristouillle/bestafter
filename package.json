@@ -1,0 +1,19 @@
+{
+  "name": "bestafter-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist .astro",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.6.4",
+    "astro": "^5.6.1",
+    "typescript": "^5.8.2"
+  }
+}
