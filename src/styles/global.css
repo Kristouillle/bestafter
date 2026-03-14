@@ -412,6 +412,59 @@ main {
   line-height: 1.8;
 }
 
+.sunset-word {
+  display: inline-flex;
+  gap: 0.01em;
+  font-weight: 700;
+}
+
+.sunset-word span {
+  display: inline-block;
+  background-image: linear-gradient(90deg, #ffd58b 0%, #ffb14f 38%, #ff7a35 68%, #ff4d2e 100%);
+  background-size: 600% 100%;
+  background-position: calc(var(--i) * 20%) 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sunset-wave 1.8s ease-in-out infinite;
+}
+
+.sunset-word span:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.sunset-word span:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.sunset-word span:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.sunset-word span:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.sunset-word span:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+@keyframes sunset-wave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateY(-0.16em) rotate(-4deg) scale(1.04);
+  }
+
+  60% {
+    transform: translateY(0.1em) rotate(2deg) scale(0.98);
+  }
+}
+
 .scan-visual {
   position: sticky;
   top: 3rem;
