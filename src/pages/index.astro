@@ -37,30 +37,53 @@ export const prerender = true;
       <div class="scan-story-grid">
         <div class="scan-copy">
           <article class="scan-step" data-scan-step="black">
-            <span class="scan-index">01</span>
-            <h2>identify a problem.</h2>
+            <span class="scan-index">.01</span>
+            <h2>chaos & noise</h2>
             <p>
-              or just something fun. i build what i want to use.
+              that's all there is out there.  that's all they want us to consume.
+              <br />
+              <br />
+              another social media platform, another "innovation" to distract us.
+              <br />
+              <br />
+              another platform to monetize our attention and time.
+              <br />
+              <br />
+              i don't even want to bring people together, i just want to build for building's sake.
             </p>
           </article>
 
           <article class="scan-step" data-scan-step="white">
-            <span class="scan-index">02</span>
-            <h2>Released in public, kept usable.</h2>
+            <span class="scan-index">.02</span>
+            <h2>find some joy</h2>
             <p>
-              The point is not to launch and disappear. It is to make things that people can
-              actually download, understand, run, and keep around without needing a sales team or a
-              migration consultant.
+              what do you want to build? what brings YOU joy?
+              <br />
+              <br />
+              ever see a sunset and just think "i wanna capture that"?
+              <br />
+              <br />
+              fix a personal pain point or build a fun tamagotchi that looks like your dog.
+              <br />
+              <br />
+              that's what we're here for.
             </p>
           </article>
 
           <article class="scan-step" data-scan-step="red">
-            <span class="scan-index">03</span>
-            <h2>Maintained because somebody should.</h2>
+            <span class="scan-index">.03</span>
+            <h2>now do it</h2>
             <p>
-              Open source only matters if someone keeps showing up for it. Donations, time, and
-              stubbornness are what keep weird useful software alive after the announcement post is
-              gone.
+              build something just for you.  share it with the world if you want, but don't worry about the algorithm or the ads or the engagement.
+              <br />
+              <br />
+              i'm begging you to not put ads, no in app purchases, no tracking, no analytics.
+              <br />
+              <br />
+              just build for the joy of it.
+              <br />
+              <br />
+              you'd be surpised at the fulfillment you can get from building something just for yourself and keeping it opensourced.
             </p>
           </article>
         </div>
@@ -103,34 +126,25 @@ export const prerender = true;
     </div>
   </section>
 
-  <div class="site-shell">
+  <section class="anti-hero">
+    <div class="anti-hero-fade" aria-hidden="true"></div>
+    <div class="site-shell anti-hero-inner">
+      <div class="anti-hero-mark" aria-hidden="true">
+        <span>KEEP IT</span>
+        <span>SMALL</span>
+        <span>KEEP IT</span>
+        <span>ALIVE</span>
+      </div>
 
-    <section class="section showcase">
-      <article class="content-card">
-        <h2>What this is</h2>
-        <p>
-          A showcase of the software I make and maintain in public. No funnel, no conversion copy,
-          no fake urgency. Just the work, the reasoning behind it, and a place to support it if you
-          want it to keep going.
+      <div class="anti-hero-copy">
+        <h2>Not everything needs to become a platform.</h2>
+        <p class="lead">
+          some things should stay personal, legible, and open.
+          software can be weird, specific, and useful without turning into a pitch deck.
         </p>
-      </article>
-
-      <article class="content-card quote-card">
-        <p>
-          Open source is not a growth hack here. It is the point.
-        </p>
-      </article>
-
-      <article class="content-card">
-        <h2>Where to start</h2>
-        <div class="button-row">
-          <a class="button-secondary" href="/about">About the work</a>
-          <a class="button-secondary" href="/contact">Get in touch</a>
-          <a class="button" href="/donations">Support it</a>
-        </div>
-      </article>
-    </section>
-  </div>
+      </div>
+    </div>
+  </section>
 
   <script is:inline>
     const scanStory = document.querySelector("[data-scan-story]");

@@ -114,19 +114,33 @@ img {
 }
 
 .nav a {
+  position: relative;
   text-decoration: none;
   padding: 0.7rem 0.95rem;
-  border: 2px solid transparent;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.85rem;
-  border-radius: 999px;
+  color: var(--muted);
 }
 
-.nav a:hover,
+.nav a:hover {
+  color: var(--ink);
+}
+
 .nav a[aria-current="page"] {
-  border-color: var(--line);
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.3rem;
+  height: 2px;
+  background: var(--ink);
+  transform: skewX(-24deg) rotate(-1deg);
+  transform-origin: left center;
 }
 
 main {
@@ -455,6 +469,76 @@ main {
   opacity: 1;
 }
 
+.anti-hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #050506 0%, #260406 100%);
+}
+
+.anti-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/rock-rotated.jpg") center / cover no-repeat;
+  transform: rotate(180deg);
+  transform-origin: center;
+  mix-blend-mode: screen;
+  filter: contrast(1.12) brightness(0.9);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.anti-hero-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 18%, rgba(20, 2, 4, 0.92) 42%, rgba(46, 5, 8, 0.82) 72%, rgba(83, 7, 12, 0.9) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.anti-hero-inner {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.85fr) minmax(0, 1.15fr);
+  gap: 1.5rem;
+  align-items: end;
+  padding-top: 7rem;
+  padding-bottom: 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.anti-hero-mark {
+  justify-items: start;
+  align-self: stretch;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.85;
+  letter-spacing: 0.08em;
+  color: rgba(240, 240, 237, 0.26);
+}
+
+.anti-hero-copy {
+  justify-self: end;
+  max-width: 46rem;
+}
+
+.anti-hero-copy h2 {
+  max-width: 10ch;
+  margin: 0 0 1rem;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.84;
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-weight: 400;
+}
+
+.anti-hero-copy .lead {
+  max-width: 38rem;
+}
+
 .content-card h2,
 .donation-card h2 {
   margin-top: 0;
@@ -562,7 +646,8 @@ main {
   .hero,
   .split,
   .showcase,
-  .scan-story-grid {
+  .scan-story-grid,
+  .anti-hero-inner {
     grid-template-columns: 1fr;
   }
 
@@ -584,6 +669,14 @@ main {
   .hero-mark {
     justify-items: start;
     text-align: left;
+  }
+
+  .anti-hero-mark {
+    order: 2;
+  }
+
+  .anti-hero-copy {
+    justify-self: start;
   }
 
   .scan-copy {
