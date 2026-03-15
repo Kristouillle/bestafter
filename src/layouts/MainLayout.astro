@@ -11,10 +11,10 @@ interface Props {
 const { title, description, path, fullBleed = false } = Astro.props;
 
 const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/donations", label: "Donations" }
+  { href: "/", label: "Home", poster: "/images/home.png" },
+  { href: "/about", label: "About", poster: "/images/about.png" },
+  { href: "/contact", label: "Contact", poster: "/images/home.png" },
+  { href: "/donations", label: "Donations", poster: "/images/home.png" }
 ];
 ---
 
@@ -58,7 +58,7 @@ const navigation = [
                   aria-current={path === item.href ? "page" : undefined}
                   aria-label={item.label}
                 >
-                  <img src="/images/home.png" alt="" />
+                  <img src={item.poster} alt="" />
                 </a>
               ))
             }
