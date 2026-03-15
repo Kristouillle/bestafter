@@ -96,6 +96,8 @@ export const prerender = true;
             <video
               class="scan-video scan-video-black"
               src="/videos/blackscan.webm"
+              data-desktop-src="/videos/blackscan.webm"
+              data-mobile-src="/videos/blackscan2.webm"
               autoplay
               muted
               loop
@@ -106,6 +108,8 @@ export const prerender = true;
             <video
               class="scan-video scan-video-white"
               src="/videos/whitescan.webm"
+              data-desktop-src="/videos/whitescan.webm"
+              data-mobile-src="/videos/whitescan2.webm"
               autoplay
               muted
               loop
@@ -116,6 +120,8 @@ export const prerender = true;
             <video
               class="scan-video scan-video-red"
               src="/videos/redscan.webm"
+              data-desktop-src="/videos/redscan.webm"
+              data-mobile-src="/videos/redscan2.webm"
               autoplay
               muted
               loop
@@ -153,10 +159,32 @@ export const prerender = true;
     const scanStory = document.querySelector("[data-scan-story]");
     const scanSteps = Array.from(document.querySelectorAll("[data-scan-step]"));
     const scanVideos = Array.from(document.querySelectorAll(".scan-video"));
+    const mobileScanBreakpoint = window.matchMedia("(max-width: 900px)");
+
+    const getMobileStage = (progress) => {
+      if (progress < 0.34) return "black";
+      if (progress < 0.74) return "white";
+      return "red";
+    };
+
+    const updateMobileScan = () => {
+      if (!scanStory || !mobileScanBreakpoint.matches) {
+        return;
+      }
+
+      const rect = scanStory.getBoundingClientRect();
+      const total = Math.max(scanStory.offsetHeight - window.innerHeight, 1);
+      const progress = Math.max(0, Math.min(1, -rect.top / total));
+
+      scanStory.style.setProperty("--scan-mobile-progress", String(progress));
+      scanStory.dataset.stage = getMobileStage(progress);
+    };
 
     if (scanStory && scanSteps.length) {
       const setStage = (stage) => {
-        scanStory.dataset.stage = stage;
+        if (!mobileScanBreakpoint.matches) {
+          scanStory.dataset.stage = stage;
+        }
       };
 
       const observer = new IntersectionObserver(
@@ -179,6 +207,26 @@ export const prerender = true;
     }
 
     if (scanVideos.length) {
+      const updateVideoSources = () => {
+        const useMobile = mobileScanBreakpoint.matches;
+
+        scanVideos.forEach((video) => {
+          const nextSrc = useMobile ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+          if (!nextSrc || video.getAttribute("src") === nextSrc) {
+            return;
+          }
+
+          const wasPaused = video.paused;
+          video.pause();
+          video.setAttribute("src", nextSrc);
+          video.load();
+
+          if (!wasPaused) {
+            tryPlay(video);
+          }
+        });
+      };
+
       const tryPlay = (video) => {
         video.muted = true;
         video.defaultMuted = true;
@@ -211,7 +259,33 @@ export const prerender = true;
         master.addEventListener("timeupdate", syncToFirst);
       }
 
+      updateVideoSources();
       scanVideos.forEach(tryPlay);
+      mobileScanBreakpoint.addEventListener("change", updateVideoSources);
+    }
+
+    if (scanStory) {
+      let ticking = false;
+
+      const onScroll = () => {
+        if (!mobileScanBreakpoint.matches) {
+          scanStory.style.removeProperty("--scan-mobile-progress");
+          return;
+        }
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateMobileScan();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      updateMobileScan();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      mobileScanBreakpoint.addEventListener("change", onScroll);
     }
   </script>
 </MainLayout>
