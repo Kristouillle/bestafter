@@ -9,5 +9,5 @@ export default defineConfig({
   session: {
     driver: "memory"
   },
-  site: "https://example.com"
+  site: "https://bestafter.ca"
 });
