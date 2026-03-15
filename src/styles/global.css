@@ -16,6 +16,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "BoldMoney";
+  src: url("/fonts/BOLDMONEY.otf") format("opentype");
+  font-display: swap;
+}
+
 :root {
   --bg: #1b1c1f;
   --bg-deep: #09090b;
@@ -79,6 +85,10 @@ img {
   box-shadow: none;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 .brand {
   text-decoration: none;
   text-transform: uppercase;
@@ -99,41 +109,109 @@ img {
   letter-spacing: 0.12em;
 }
 
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.menu-toggle {
+  pointer-events: auto;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--ink);
+  padding: 0.8rem 1rem;
+  min-width: 6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 220ms ease, visibility 220ms ease;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+body.menu-open .menu-overlay {
+  opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-.nav a {
-  position: relative;
-  text-decoration: none;
-  padding: 0.7rem 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.nav a:hover {
-  color: var(--ink);
-}
-
-.nav a[aria-current="page"] {
-  color: var(--ink);
-}
-
-.nav a[aria-current="page"]::after {
-  content: "";
+.menu-overlay-inner {
   position: absolute;
-  left: 0.85rem;
-  right: 0.85rem;
-  bottom: 0.3rem;
-  height: 2px;
-  background: var(--ink);
-  transform: skewX(-24deg) rotate(-1deg);
-  transform-origin: left center;
+  inset: 0;
+  overflow: auto;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.90)),
+    url("/images/plywood_bw.jpg") center / cover no-repeat;
+  transform: translateY(-100%);
+  transition: transform 280ms ease;
+}
+
+body.menu-open .menu-overlay-inner {
+  transform: translateY(0);
+}
+
+.menu-overlay-shell {
+  width: min(calc(100% - 2rem), 88rem);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 7rem 0 3rem;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+.menu-posters {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.menu-poster-link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  transform: rotate(calc(var(--poster-tilt, 0) * 1deg));
+}
+
+.menu-poster-link:nth-child(1) {
+  --poster-tilt: -2;
+}
+
+.menu-poster-link:nth-child(2) {
+  --poster-tilt: 1.5;
+}
+
+.menu-poster-link:nth-child(3) {
+  --poster-tilt: -1;
+}
+
+.menu-poster-link:nth-child(4) {
+  --poster-tilt: 2;
+}
+
+.menu-poster-link img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  opacity: 0.94;
+  filter: sepia(0.08) saturate(0.88) contrast(1.06) brightness(1.06);
+}
+
+.menu-poster-link[aria-current="page"] img {
+  outline: 2px solid rgba(255, 255, 255, 0.22);
+  outline-offset: -2px;
+}
+
+.menu-poster-link:hover img {
+  opacity: 0.98;
+  filter: sepia(0.04) saturate(0.96) contrast(1.08) brightness(1.08);
 }
 
 main {
@@ -396,6 +474,8 @@ main {
   font-size: clamp(2rem, 4.2vw, 3.5rem);
   line-height: 0.95;
   text-transform: uppercase;
+  font-family: "BoldMoney", "Inktoner", "Moms Typewriter", monospace;
+  font-weight: 400;
 }
 
 .scan-step p {
@@ -716,6 +796,14 @@ main {
     flex-direction: column;
   }
 
+  .menu-overlay-shell {
+    display: block;
+  }
+
+  .menu-posters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero {
     min-height: auto;
   }
@@ -761,12 +849,7 @@ main {
     width: min(calc(100% - 1rem), var(--max-width));
   }
 
-  .nav {
+  .menu-toggle {
     width: 100%;
-  }
-
-  .nav a {
-    flex: 1 1 calc(50% - 0.5rem);
-    text-align: center;
   }
 }

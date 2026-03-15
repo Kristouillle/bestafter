@@ -34,18 +34,39 @@ const navigation = [
             BestAfter:
             <small>Open source for public good</small>
           </a>
-          <nav class="nav" aria-label="Primary navigation">
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            data-menu-toggle
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="menu-overlay" id="site-menu" aria-hidden="true" data-menu-overlay>
+      <div class="menu-overlay-inner">
+        <div class="menu-overlay-shell">
+          <nav class="menu-posters" aria-label="Primary navigation">
             {
               navigation.map((item) => (
-                <a href={item.href} aria-current={path === item.href ? "page" : undefined}>
-                  {item.label}
+                <a
+                  class="menu-poster-link"
+                  href={item.href}
+                  aria-current={path === item.href ? "page" : undefined}
+                  aria-label={item.label}
+                >
+                  <img src="/images/home.png" alt="" />
                 </a>
               ))
             }
           </nav>
         </div>
       </div>
-    </header>
+    </div>
 
     <main>
       {fullBleed ? <slot /> : <div class="site-shell"><slot /></div>}
@@ -61,5 +82,40 @@ const navigation = [
         </div>
       </div>
     </footer>
+
+    <script is:inline>
+      const menuButton = document.querySelector("[data-menu-toggle]");
+      const menuOverlay = document.querySelector("[data-menu-overlay]");
+      const menuLinks = Array.from(document.querySelectorAll(".menu-poster-link"));
+
+      if (menuButton && menuOverlay) {
+        const setMenuState = (open) => {
+          menuButton.setAttribute("aria-expanded", String(open));
+          menuOverlay.setAttribute("aria-hidden", String(!open));
+          document.body.classList.toggle("menu-open", open);
+        };
+
+        menuButton.addEventListener("click", () => {
+          const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+          setMenuState(!isOpen);
+        });
+
+        menuOverlay.addEventListener("click", (event) => {
+          if (event.target === menuOverlay) {
+            setMenuState(false);
+          }
+        });
+
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", () => setMenuState(false));
+        });
+
+        window.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            setMenuState(false);
+          }
+        });
+      }
+    </script>
   </body>
 </html>
