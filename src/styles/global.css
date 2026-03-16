@@ -22,6 +22,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Ransom Blanco Zero";
+  src: url("/fonts/Ransom Blanco Zero.otf") format("opentype");
+  font-display: swap;
+}
+
 :root {
   --bg: #1b1c1f;
   --bg-deep: #09090b;
@@ -301,10 +307,48 @@ body.menu-open .menu-overlay-inner {
   width: min(calc(100% - 2rem), 88rem);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 7rem 0 3rem;
+  padding: 5.75rem 0 3rem;
   display: flex;
   align-items: start;
   justify-content: center;
+}
+
+.menu-poster-stack {
+  width: 100%;
+}
+
+.menu-kicker {
+  margin: 0 0 0.95rem;
+  color: var(--ink);
+  font-family: "Ransom Blanco Zero", "Inktoner", "Moms Typewriter", monospace;
+  font-size: clamp(2.1rem, 5vw, 3.45rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.menu-kicker-line {
+  display: flex;
+  justify-content: center;
+  gap: 0.78em;
+}
+
+.menu-kicker-line + .menu-kicker-line {
+  margin-top: 0.08em;
+}
+
+.menu-kicker-line-lower {
+  padding-left: 2.1ch;
+}
+
+.menu-kicker-word {
+  display: inline-flex;
+  gap: 0.02em;
+}
+
+.menu-kicker-line span {
+  display: inline-block;
+  transform: rotate(var(--r, 0deg));
 }
 
 .menu-posters {
@@ -948,6 +992,15 @@ main {
 
   .menu-posters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .menu-kicker {
+    margin-bottom: 1rem;
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+
+  .menu-kicker-line-lower {
+    padding-left: 1.45ch;
   }
 
   .hero {

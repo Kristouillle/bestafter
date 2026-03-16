@@ -61,20 +61,50 @@ const navigation = [
           </button>
         </div>
         <div class="menu-overlay-shell">
-          <nav class="menu-posters" aria-label="Primary navigation">
-            {
-              navigation.map((item) => (
-                <a
-                  class="menu-poster-link"
-                  href={item.href}
-                  aria-current={path === item.href ? "page" : undefined}
-                  aria-label={item.label}
-                >
-                  <img src={item.poster} alt="" />
-                </a>
-              ))
-            }
-          </nav>
+          <div class="menu-poster-stack">
+            <p class="menu-kicker" aria-label="where to go next?">
+              <span class="menu-kicker-line">
+                <span class="menu-kicker-word">
+                  <span style="--r: -4deg">W</span>
+                  <span style="--r: 3deg">H</span>
+                  <span style="--r: -2deg">E</span>
+                  <span style="--r: 5deg">R</span>
+                  <span style="--r: -1deg">E</span>
+                </span>
+                <span class="menu-kicker-word">
+                  <span style="--r: 4deg">T</span>
+                  <span style="--r: -3deg">O</span>
+                </span>
+                <span class="menu-kicker-word">
+                  <span style="--r: 2deg">G</span>
+                  <span style="--r: -5deg">O</span>
+                </span>
+              </span>
+              <span class="menu-kicker-line menu-kicker-line-lower">
+                <span class="menu-kicker-word">
+                  <span style="--r: -3deg">N</span>
+                  <span style="--r: 4deg">E</span>
+                  <span style="--r: -1deg">X</span>
+                  <span style="--r: 5deg">T</span>
+                  <span style="--r: -4deg">?</span>
+                </span>
+              </span>
+            </p>
+            <nav class="menu-posters" aria-label="Primary navigation">
+              {
+                navigation.map((item) => (
+                  <a
+                    class="menu-poster-link"
+                    href={item.href}
+                    aria-current={path === item.href ? "page" : undefined}
+                    aria-label={item.label}
+                  >
+                    <img src={item.poster} alt="" />
+                  </a>
+                ))
+              }
+            </nav>
+          </div>
         </div>
       </div>
     </div>
