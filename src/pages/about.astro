@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import PageHeader from "../components/PageHeader.astro";
+import UnderConstructionPage from "../components/UnderConstructionPage.astro";
 
 export const prerender = true;
 ---
@@ -9,22 +9,8 @@ export const prerender = true;
   title="About | BestAfter"
   description="About the nonprofit open source software mission behind BestAfter."
   path="/about"
+  fullBleed={true}
+  minimal={true}
 >
-  <PageHeader
-    eyebrow="About"
-    title="Software for organizations that need clarity more than complexity."
-    intro="BestAfter exists to build and maintain open source tools that are useful to nonprofits, advocacy groups, and small teams with limited technical capacity."
-  />
-
-  <section class="content-card">
-    <p>
-      The focus is on software that can be deployed simply, explained clearly, and sustained over
-      time. That means avoiding unnecessary product sprawl, keeping infrastructure modest, and
-      treating documentation as part of the product.
-    </p>
-    <p>
-      The projects aim to be financially transparent as well. Donations support hosting, support
-      time, maintenance work, and the slower but necessary parts of open source stewardship.
-    </p>
-  </section>
+  <UnderConstructionPage eyebrow="About" />
 </MainLayout>

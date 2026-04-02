@@ -6,9 +6,10 @@ interface Props {
   description: string;
   path: string;
   fullBleed?: boolean;
+  minimal?: boolean;
 }
 
-const { title, description, path, fullBleed = false } = Astro.props;
+const { title, description, path, fullBleed = false, minimal = false } = Astro.props;
 
 const navigation = [
   { href: "/", label: "Home", poster: "/images/home.png" },
@@ -26,7 +27,7 @@ const navigation = [
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body>
+  <body class={minimal ? "minimal-page" : undefined}>
     <header class="site-header">
       <div class="site-shell">
         <div class="site-header-inner">
@@ -113,16 +114,23 @@ const navigation = [
       {fullBleed ? <slot /> : <div class="site-shell"><slot /></div>}
     </main>
 
-    <footer class="site-footer">
-      <div class="site-shell">
-        <div class="site-footer-inner">
-          BestAfter builds nonprofit open source software that stays accessible, maintainable, and useful.
-          <br>
-          <br>
-          building for the fun of it, imagine that.
-        </div>
-      </div>
-    </footer>
+    {
+      !minimal && (
+        <footer class="site-footer">
+          <div class="site-shell">
+            <div class="site-footer-inner">
+              BestAfter builds nonprofit open source software that stays accessible, maintainable, and useful.
+              <br>
+              <br>
+              building for the fun of it, imagine that.
+              <div class="site-footer-links">
+                <a href="/policies">Policies &amp; Confidentiality</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      )
+    }
 
     <script is:inline>
       const menuButton = document.querySelector("[data-menu-toggle]");

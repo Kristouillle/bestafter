@@ -56,6 +56,10 @@ body {
   min-height: 100vh;
 }
 
+body.minimal-page {
+  background: #000;
+}
+
 a {
   color: inherit;
 }
@@ -861,6 +865,263 @@ main {
   letter-spacing: 0.04em;
 }
 
+.under-construction-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+.under-construction-screen h1 {
+  margin: 0;
+  color: #fff;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.policy-hero,
+.policy-stream {
+  background: #000;
+}
+
+.policy-hero {
+  padding: 7.5rem 0 2rem;
+}
+
+.policy-hero-inner {
+  min-height: calc(100vh - 9rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.85fr);
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.policy-kicker {
+  color: var(--muted);
+  font-size: 0.84rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.policy-hero h1 {
+  max-width: 9ch;
+  margin: 0.45rem 0 1rem;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-weight: 400;
+}
+
+.policy-hero .lead,
+.policy-block p,
+.policy-list {
+  font-family: "Baskerville", "Hoefler Text", "Palatino Linotype", "Book Antiqua", serif;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+}
+
+.policy-mark {
+  justify-items: end;
+  align-self: stretch;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.85;
+  letter-spacing: 0.08em;
+  color: rgba(240, 240, 237, 0.32);
+  text-align: right;
+}
+
+.policy-stream {
+  padding: 2rem 0 7rem;
+}
+
+.policy-stream-shell {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.policy-sidebar {
+  position: sticky;
+  top: 6.75rem;
+  align-self: start;
+}
+
+.policy-sidebar-inner {
+  max-height: calc(100vh - 8rem);
+  overflow: auto;
+}
+
+.policy-sidebar-kicker {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.policy-toc {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.policy-toc-link {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.policy-toc-link:hover,
+.policy-toc-link:focus-visible,
+.policy-toc-link[aria-current="location"] {
+  color: #fff;
+}
+
+.policy-toc-group {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.policy-toc-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: start;
+}
+
+.policy-toc-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+  font-family: "Moms Typewriter", "American Typewriter", monospace;
+  font-size: 1.15rem;
+}
+
+.policy-toc-toggle::before {
+  content: "+";
+  display: block;
+}
+
+.policy-toc-toggle[aria-expanded="true"]::before {
+  content: "−";
+}
+
+.policy-toc-toggle:hover,
+.policy-toc-toggle:focus-visible {
+  color: #fff;
+}
+
+.policy-toc-children {
+  display: grid;
+  gap: 0.65rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-0.2rem);
+  transition:
+    max-height 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 180ms ease,
+    transform 220ms ease;
+}
+
+[data-policy-group][data-expanded="true"] .policy-toc-children {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.policy-toc-children .policy-toc-link {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.policy-stream-inner {
+  display: grid;
+  gap: 7rem;
+}
+
+.policy-block {
+  max-width: 52rem;
+}
+
+.policy-block[id],
+.policy-subsection[id] {
+  scroll-margin-top: 7rem;
+}
+
+.policy-index {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.policy-block h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-weight: 400;
+}
+
+.policy-subsection {
+  max-width: 42rem;
+  margin-top: 4rem;
+}
+
+.policy-subsection .policy-index {
+  display: none;
+}
+
+.policy-subsection h3 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-family: "Inktoner", "Moms Typewriter", monospace;
+  font-weight: 400;
+}
+
+.policy-block p,
+.policy-list {
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+.policy-block p {
+  margin: 0 0 1.15rem;
+}
+
+.policy-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.policy-list li + li {
+  margin-top: 0.5rem;
+}
+
 .quote-card {
   display: flex;
   align-items: center;
@@ -948,7 +1209,7 @@ main {
   position: relative;
   padding: 2rem 0;
   background: #1e1e1e;
-  height: 200px;
+  min-height: 200px;
 }
 
 .site-footer::before {
@@ -972,12 +1233,32 @@ main {
   font-size: 0.8rem;
 }
 
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.site-footer-links a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
 @media (max-width: 900px) {
   .hero,
   .split,
   .showcase,
   .scan-story-grid,
-  .anti-hero-inner {
+  .anti-hero-inner,
+  .policy-hero-inner,
+  .policy-stream-shell {
     grid-template-columns: 1fr;
   }
 
@@ -1025,6 +1306,40 @@ main {
 
   .anti-hero-copy {
     justify-self: start;
+  }
+
+  .policy-hero {
+    padding-top: 6rem;
+  }
+
+  .policy-hero-inner {
+    min-height: auto;
+    padding-bottom: 2rem;
+  }
+
+  .policy-mark {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .policy-stream-inner {
+    gap: 5rem;
+  }
+
+  .policy-sidebar-inner {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .policy-sidebar {
+    position: static;
+    top: auto;
+    margin-bottom: 1rem;
+  }
+
+  .policy-toc-children {
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
   }
 
   .scan-story {

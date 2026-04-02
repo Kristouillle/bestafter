@@ -1,0 +1,425 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+export const prerender = true;
+---
+
+<MainLayout
+  title="Policies & Confidentiality | BestAfter"
+  description="General privacy and confidentiality information for BestAfter apps."
+  path="/policies"
+  fullBleed={true}
+>
+  <section class="policy-hero">
+    <div class="site-shell policy-hero-inner">
+      <div class="policy-copy">
+        <div class="policy-kicker">Policies</div>
+        <h1>Privacy & Confidentiality</h1>
+        <p class="lead">
+          We respect the utmost privacy of our users and try to collect as little information as
+          possible. When data is needed, it should be limited to what is required to make the app
+          work.
+        </p>
+      </div>
+
+      <div class="policy-mark" aria-hidden="true">
+        <span>PRIVATE</span>
+        <span>BY</span>
+        <span>DEFAULT</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy-stream">
+    <div class="site-shell policy-stream-shell">
+      <aside class="policy-sidebar" aria-label="Section navigation">
+        <div class="policy-sidebar-inner">
+          <div class="policy-sidebar-kicker">On this page</div>
+          <nav class="policy-toc">
+            <a class="policy-toc-link" href="#minimal-by-default" data-policy-section="minimal-by-default">
+              Minimal by default
+            </a>
+
+            <div class="policy-toc-group" data-policy-group="centris" data-expanded="false">
+              <div class="policy-toc-row">
+                <a
+                  class="policy-toc-link"
+                  href="#centris-comments-privacy"
+                  data-policy-section="centris-comments-privacy"
+                >
+                  Centris Comments
+                </a>
+                <button
+                  class="policy-toc-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-group-centris"
+                  aria-label="Toggle Centris Comments sections"
+                  data-policy-toggle="centris"
+                ></button>
+              </div>
+              <div class="policy-toc-children" id="policy-group-centris" data-policy-children="centris">
+                <a class="policy-toc-link" href="#centris-comments-collects" data-policy-section="centris-comments-collects">What it collects</a>
+                <a class="policy-toc-link" href="#centris-comments-purpose" data-policy-section="centris-comments-purpose">Why it collects it</a>
+                <a class="policy-toc-link" href="#centris-comments-storage" data-policy-section="centris-comments-storage">Where it goes</a>
+                <a class="policy-toc-link" href="#centris-comments-limits" data-policy-section="centris-comments-limits">What it does not do</a>
+                <a class="policy-toc-link" href="#centris-comments-control" data-policy-section="centris-comments-control">User control</a>
+              </div>
+            </div>
+
+            <div class="policy-toc-group" data-policy-group="valorant" data-expanded="false">
+              <div class="policy-toc-row">
+                <a
+                  class="policy-toc-link"
+                  href="#valorant-lock-screen-privacy"
+                  data-policy-section="valorant-lock-screen-privacy"
+                >
+                  Valorant Lock Screen
+                </a>
+                <button
+                  class="policy-toc-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="policy-group-valorant"
+                  aria-label="Toggle Valorant Lock Screen sections"
+                  data-policy-toggle="valorant"
+                ></button>
+              </div>
+              <div class="policy-toc-children" id="policy-group-valorant" data-policy-children="valorant">
+                <a class="policy-toc-link" href="#valorant-what-it-does" data-policy-section="valorant-what-it-does">What it does</a>
+                <a class="policy-toc-link" href="#valorant-local-storage" data-policy-section="valorant-local-storage">What stays on device</a>
+                <a class="policy-toc-link" href="#valorant-network-data" data-policy-section="valorant-network-data">What is sent to the backend</a>
+                <a class="policy-toc-link" href="#valorant-push-updates" data-policy-section="valorant-push-updates">Push updates</a>
+                <a class="policy-toc-link" href="#valorant-third-parties" data-policy-section="valorant-third-parties">Third-party services</a>
+                <a class="policy-toc-link" href="#valorant-limits" data-policy-section="valorant-limits">What it does not do</a>
+              </div>
+            </div>
+
+            <a class="policy-toc-link" href="#policy-contact" data-policy-section="policy-contact">
+              Contact
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="policy-stream-inner">
+        <article class="policy-block" id="minimal-by-default">
+          <span class="policy-index">.01</span>
+          <h2>Minimal by default</h2>
+          <p>
+            BestAfter apps are built with a preference for minimal data collection. We do not use
+            advertising networks, and we do not sell user data. If an app uses a third-party service
+            to provide core functionality, that use should be disclosed clearly.
+          </p>
+          <p>
+            Information shared for support, testing, bug reports, or collaboration is treated as
+            confidential and used only for operating, maintaining, or improving the relevant app,
+            unless disclosure is required by law.
+          </p>
+        </article>
+
+        <article class="policy-block" id="centris-comments-privacy">
+          <span class="policy-index">.02</span>
+          <h2>Centris Comments</h2>
+          <p>
+            Centris Comments is a Chrome extension that adds a public comments section to Centris
+            listing pages. It allows users to read comments, post comments, and reply to comments
+            associated with a property listing.
+          </p>
+
+          <div class="policy-subsection" id="centris-comments-collects">
+            <h3>What it collects</h3>
+            <p>
+              Centris Comments may collect and transmit the listing identifier derived from the
+              current Centris page URL, an optional username entered by the user, and the comment or
+              reply text entered by the user.
+            </p>
+            <p>
+              Usernames are optional and self-declared. The extension is designed to collect only the
+              information needed to associate a public comment with the listing being viewed.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="centris-comments-purpose">
+            <h3>Why it collects it</h3>
+            <p>
+              This information is used only to display comments for a specific listing, allow users
+              to post comments and replies, and associate submitted comments with the listing being
+              viewed.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="centris-comments-storage">
+            <h3>Where it goes</h3>
+            <p>
+              Submitted data is stored or processed through Supabase as the backend and database
+              provider. Data is transmitted over the internet because that is required for the core
+              comment functionality to work.
+            </p>
+            <p>
+              The extension only runs on <code>centris.ca</code> and <code>www.centris.ca</code>
+              pages where it is needed to detect listings and inject the comments widget. It does
+              not execute remote JavaScript or WebAssembly code, and only communicates with backend
+              APIs to read and write comment data.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="centris-comments-limits">
+            <h3>What it does not do</h3>
+            <ul class="policy-list">
+              <li>It does not require user account registration.</li>
+              <li>It does not verify real identity.</li>
+              <li>It does not collect payment information.</li>
+              <li>It does not collect health information.</li>
+              <li>It does not collect passwords or authentication secrets.</li>
+              <li>It does not track browsing outside supported Centris pages.</li>
+              <li>It does not track mouse movement, keystrokes outside the form, or unrelated browsing behavior.</li>
+              <li>It does not use data for advertising.</li>
+              <li>It does not sell user data.</li>
+            </ul>
+          </div>
+
+          <div class="policy-subsection" id="centris-comments-control">
+            <h3>User control</h3>
+            <p>
+              Users choose whether to submit a username, comment, or reply. Because comments are
+              public, users should avoid submitting sensitive personal information in comment fields.
+            </p>
+          </div>
+        </article>
+
+        <article class="policy-block" id="valorant-lock-screen-privacy">
+          <span class="policy-index">.03</span>
+          <h2>Valorant Lock Screen</h2>
+          <p>
+            Valorant Lock Screen is an iPhone app with widget and Live Activity support for following
+            selected Valorant teams and seeing current or upcoming match information on the lock
+            screen and home screen.
+          </p>
+
+          <div class="policy-subsection" id="valorant-what-it-does">
+            <h3>What it does</h3>
+            <p>
+              The app lets users choose which teams they want to follow, fetches match data for those
+              selections from the app backend, and shows that information inside the app, widgets,
+              and Live Activities.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="valorant-local-storage">
+            <h3>What stays on device</h3>
+            <p>
+              The app stores tracked team selections, the Live Activity preference, and cached match
+              data locally on the device using shared app storage so the app and widget can stay in
+              sync.
+            </p>
+            <p>
+              This local storage is used for product behavior and faster display, not for advertising.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="valorant-network-data">
+            <h3>What is sent to the backend</h3>
+            <p>
+              When the app or widget requests match data, it sends the selected team identifiers so
+              the backend can return the relevant matches.
+            </p>
+            <p>
+              If Live Activity updates are active, the app may also send a technical push token, the
+              active match identifier, the Live Activity identifier, and the tracked team identifiers
+              so the backend can deliver score updates to that activity.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="valorant-push-updates">
+            <h3>Push updates</h3>
+            <p>
+              If widget push refresh is available, the widget may send a technical push token and
+              widget metadata such as widget kind and size family so the backend can request a widget
+              refresh through Apple&apos;s push systems.
+            </p>
+            <p>
+              Based on the current backend code, push registrations may be stored for a limited period
+              to keep updates working and are used only for widget and Live Activity delivery.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="valorant-third-parties">
+            <h3>Third-party services</h3>
+            <p>
+              Match data is served through the app&apos;s backend, which currently polls Riot-owned
+              Valorant esports schedule surfaces and related project infrastructure to normalize match
+              data for the app.
+            </p>
+            <p>
+              Push delivery for widgets and Live Activities relies on Apple Push Notification service
+              (APNs). These services are used only to operate match tracking and update delivery.
+            </p>
+          </div>
+
+          <div class="policy-subsection" id="valorant-limits">
+            <h3>What it does not do</h3>
+            <ul class="policy-list">
+              <li>It does not require account registration.</li>
+              <li>It does not sell user data.</li>
+              <li>It does not use advertising SDKs.</li>
+              <li>It does not use analytics or tracking SDKs in the current codebase.</li>
+              <li>It does not collect payment information.</li>
+              <li>It does not request access to contacts, location, camera, microphone, photos, or health data in the current app code.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="policy-block" id="policy-contact">
+          <span class="policy-index">.04</span>
+          <h2>Contact</h2>
+          <p>
+            For privacy-related questions, contact:
+            <a href="mailto:christophe.viens@gmail.com">christophe.viens@gmail.com</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const policyToc = document.querySelector(".policy-toc");
+
+    if (policyToc) {
+      const links = Array.from(policyToc.querySelectorAll("[data-policy-section]"));
+      const groups = Array.from(policyToc.querySelectorAll("[data-policy-group]"))
+        .map((group) => {
+          const id = group.getAttribute("data-policy-group");
+          const button = group.querySelector("[data-policy-toggle]");
+          const children = group.querySelector("[data-policy-children]");
+          const sectionIds = Array.from(group.querySelectorAll("[data-policy-section]"))
+            .map((link) => link.getAttribute("data-policy-section"))
+            .filter(Boolean);
+
+          if (!id || !button || !children || sectionIds.length === 0) {
+            return null;
+          }
+
+          return { id, group, button, children, sectionIds };
+        })
+        .filter(Boolean);
+
+      const manualGroupState = new Map();
+      const sectionToGroup = new Map();
+      let currentSectionId = null;
+
+      groups.forEach((group) => {
+        group.sectionIds.forEach((sectionId) => {
+          sectionToGroup.set(sectionId, group.id);
+        });
+      });
+
+      const setGroupExpanded = (group, expanded) => {
+        group.group.setAttribute("data-expanded", expanded ? "true" : "false");
+        group.button.setAttribute("aria-expanded", String(expanded));
+        group.children.style.maxHeight = expanded ? `${group.children.scrollHeight}px` : "0px";
+      };
+
+      const setActiveSection = (sectionId) => {
+        currentSectionId = sectionId;
+        const activeGroupId = sectionId ? sectionToGroup.get(sectionId) : null;
+
+        groups.forEach((group) => {
+          const manualState = manualGroupState.get(group.id);
+          const expanded = group.id === activeGroupId ? manualState !== false : manualState === true;
+          setGroupExpanded(group, expanded);
+        });
+
+        links.forEach((link) => {
+          if (link.getAttribute("data-policy-section") === sectionId) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const openGroupForSection = (sectionId) => {
+        const groupId = sectionToGroup.get(sectionId);
+        if (groupId) {
+          manualGroupState.delete(groupId);
+        }
+        setActiveSection(sectionId);
+      };
+
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          const sectionId = link.getAttribute("data-policy-section");
+          if (sectionId) {
+            openGroupForSection(sectionId);
+          }
+        });
+      });
+
+      groups.forEach((group) => {
+        group.button.addEventListener("click", () => {
+          const isExpanded = group.button.getAttribute("aria-expanded") === "true";
+          manualGroupState.set(group.id, !isExpanded);
+          setActiveSection(currentSectionId);
+        });
+      });
+
+      const syncExpandedGroupHeights = () => {
+        groups.forEach((group) => {
+          const expanded = group.button.getAttribute("aria-expanded") === "true";
+          group.children.style.maxHeight = expanded ? `${group.children.scrollHeight}px` : "0px";
+        });
+      };
+
+      const observedSections = Array.from(document.querySelectorAll(".policy-block[id], .policy-subsection[id]"));
+      const visibleSections = new Map();
+
+      if (observedSections.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                visibleSections.set(entry.target.id, entry);
+              } else {
+                visibleSections.delete(entry.target.id);
+              }
+            });
+
+            const visible = Array.from(visibleSections.values()).sort((left, right) => {
+              if (right.intersectionRatio !== left.intersectionRatio) {
+                return right.intersectionRatio - left.intersectionRatio;
+              }
+
+              return Math.abs(left.boundingClientRect.top) - Math.abs(right.boundingClientRect.top);
+            })[0];
+
+            if (visible?.target?.id) {
+              setActiveSection(visible.target.id);
+            }
+          },
+          {
+            rootMargin: "-18% 0px -58% 0px",
+            threshold: [0.12, 0.3, 0.55, 0.8]
+          }
+        );
+
+        observedSections.forEach((section) => observer.observe(section));
+      }
+
+      const syncFromHash = () => {
+        const hash = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : "";
+
+        if (hash) {
+          openGroupForSection(hash);
+          return;
+        }
+
+        setActiveSection(currentSectionId ?? "minimal-by-default");
+      };
+
+      syncFromHash();
+      window.addEventListener("hashchange", syncFromHash);
+      window.addEventListener("resize", syncExpandedGroupHeights);
+    }
+  </script>
+</MainLayout>
